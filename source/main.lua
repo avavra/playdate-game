@@ -2,15 +2,14 @@ import "CoreLibs/object"
 import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
+import "config"
 
 local gfx <const> = playdate.graphics
 
 local playerSprite = nil
 
-local playerSpeed = 4
-
 local playTimer = nil
-local playTime = 30 * 1000
+local playTime = config.timeLimitSeconds * 1000
 
 local coinSprite = nil
 local score = 0
@@ -66,16 +65,16 @@ function playdate.update()
 		end
 	else
 		if playdate.buttonIsPressed(playdate.kButtonUp) and playerSprite then
-			playerSprite:moveBy(0, -playerSpeed)
+			playerSprite:moveBy(0, -config.playerSpeed)
 		end
 		if playdate.buttonIsPressed(playdate.kButtonRight) and playerSprite then
-			playerSprite:moveBy(playerSpeed, 0)
+			playerSprite:moveBy(config.playerSpeed, 0)
 		end
 		if playdate.buttonIsPressed(playdate.kButtonDown) and playerSprite then
-			playerSprite:moveBy(0, playerSpeed)
+			playerSprite:moveBy(0, config.playerSpeed)
 		end
 		if playdate.buttonIsPressed(playdate.kButtonLeft) and playerSprite then
-			playerSprite:moveBy(-playerSpeed, 0)
+			playerSprite:moveBy(-config.playerSpeed, 0)
 		end
 
 		local collisions = {}
